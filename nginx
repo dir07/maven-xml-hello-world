@@ -1,12 +1,15 @@
- amazon-linux-extras install nginx
- systemctl restart nginx
- systemctl status nginx
- nginx -v
- cd /etc/nginx/
- ls
- mv nginx.conf nginx.conf.bk
- vi nginx.conf
- 
+amazon-linux-extras install nginx1 -y
+systemctl restart nginx
+systemctl status nginx
+nginx -v
+cd /etc/nginx/
+ls
+mv nginx.conf nginx.conf.bk
+
+
+ # use shell script vi nginx  ,    chmod +x nginx  ,  ./nginx  for above process
+ #  cd /etc/nginx/ use only after script    #!/bin/bash
+vi nginx.conf
  
 events{
 	worker_connections 1024;
@@ -16,7 +19,7 @@ http {
  upstream tomcatServers {
 	 keepalive 50;
 	 server ip:8080; 
-	 server ip:8080;
+	 server ip:8080;  #  dont use like this  http://IP:8080/spring3-mvc-maven-xml-hello-world-1.0-SNAPSHOT/   only ip & port
 	 server ip:8080;
 }
 server {
@@ -31,9 +34,9 @@ server {
  }
 }
 
+nginx -t    #   to check syntax
+nginx -s reload  # 
+systemctl restart nginx    #
+setsebool -P httpd_can_network_connect true  #  SElinux disabled 
 
 
-nginx -t
-nginx -s reload
-systemctl restart nginx
-setsebool -P httpd_can_network_connect true
