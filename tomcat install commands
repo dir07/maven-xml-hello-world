@@ -1,0 +1,63 @@
+amazon-linux-extras install java-openjdk11
+
+
+wget  # from tomcat downaload page
+
+
+
+tar -zxvf apache-tomcat-*
+
+
+yum install tomcat -y
+
+
+yum install tomcat-webapps tomcat-docs-webapps tomcat-admin-webapps -y
+
+
+
+
+public.ip:8080  # tomcat ui
+
+
+cd /etc/tomcat
+
+ll
+
+
+mv tomcat-users.xml tomcat-users.xml.bk
+
+
+vi tomcat-users.xml   #  edit  or create new file  add below details to tomcat-users.xml file only required not all
+
+<?xml version='1.0' encoding='utf-8'?>
+
+<tomcat-users>
+
+<role rolename="manager-gui" />
+
+<user username="manager" password="manager" roles="manager-gui" />
+
+
+<role rolename="admin-gui" />
+
+<user username="admin" password="admin" roles="manager-gui,admin-gui" />
+
+</tomcat-users>    :wq
+
+
+
+systemctl restart tomcat
+   
+systemctl status tomcat
+
+
+
+
+
+
+
+
+
+
+
+
