@@ -1,4 +1,4 @@
- amazon-linux-extras install nginx1
+ amazon-linux-extras install nginx
  systemctl restart nginx
  systemctl status nginx
  nginx -v
